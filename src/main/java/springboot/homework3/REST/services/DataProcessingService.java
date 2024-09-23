@@ -15,6 +15,10 @@ public class DataProcessingService {
     @Autowired
     private UserRepository repository;
 
+    private UserService userService;
+
+    private NotificationService notificationService;
+
     public UserRepository getRepository(){
         return repository;
     }
@@ -39,5 +43,6 @@ public class DataProcessingService {
     public void addUser(User user){
         repository.getUsers().add(user);
     }
+
 
 }

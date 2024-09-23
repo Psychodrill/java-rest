@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,5 +30,18 @@ public class UserController {
 
         service.getDataProcessingService().getRepository().getUsers().add(user);
         return "user added from body!";
+    }
+
+    @GetMapping("/sort")
+    public List<User> sortUserByAge(){
+        return service.getDataProcessingService().sortUsersByAge(service.getDataProcessingService().getRepository().getUsers());
+    }
+    @GetMapping("/filter/{age}")
+    public List<User>filterUsersByAge(@PathVariable int age){
+        return service.getDataProcessingService().sortUsersByAge(service.getDataProcessingService().getRepository().getUsers());
+    }
+    @GetMapping("/calc")
+    public double alculateAverageAge(){
+        return service.getDataProcessingService().calculateAverageAge(service.getDataProcessingService().getRepository().getUsers());
     }
 }
